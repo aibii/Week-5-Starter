@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome Page</h1>
+    <h2 th:text="${Employee.userId}"></h2>
+    <form action="">
+        <div th:object="${Employee}">
+            <h2 th:field="*{userId}"></h2>
+            <h2 th:field="*{firstName}"></h2>
+            <!-- <h2 th:text="$Employee.lastName"></h2> This line was missing { }   -->
+            <h2 th:text="*{lastName}"></h2> <!-- Corrected -->
+        </div>
+    </form>
+</body>
+
+</html>

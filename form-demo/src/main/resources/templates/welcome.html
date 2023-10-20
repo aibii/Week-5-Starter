@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <h1>Welcome Page</h1>
-    <h2 th:text="${Employee.userId}"></h2>
+    <h1>Welcdome Page</h1>
+    <h2 th:text="${employee.userId}"></h2>
     <form action="">
-        <div th:object="${Employee}">
+        <div th:object="${employee}">
             <h2 th:field="*{userId}"></h2>
             <h2 th:field="*{firstName}"></h2>
             <!-- <h2 th:text="$Employee.lastName"></h2> This line was missing { }   -->

@@ -13,9 +13,4 @@ public class Employee {
     String password;
     String department;
 
-    public Employee(String userId) {
-        super();
-        this.userId = userId;
-    }
-
 }

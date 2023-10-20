@@ -17,20 +17,43 @@ public class LoginService {
     public LoginService(Accounts accounts) {
         this.accounts = accounts;
 
-        String[] userIds = { "admin", "sales", "orders" };
+        // Hardcode initial set of users
+        String[] userIds = {
+            "sam", "sally", "ollie", "olivia", "rachel", "ralph", "abbie", "arthur"
+        };
+        String[] departments = {
+            "sales", "sales", "orders", "orders", "repairs", "repairs", "admin", "admin"
+        };
+        String[] firstNames = {
+            "Sam", "Sally", "Ollie", "Olivia", "Rachel", "Ralph", "Abbie", "Arthur"
+        };
+        String[] lastNames = {
+            "Smith", "Johnson", "Brown", "Davis", "White", "Jones", "Wilson", "Miller"
+        };
 
-        for (String userId : userIds) {
-            addEmployee(userId);
-            // TODO add more user info
+        for (int i = 0; i < userIds.length; i++) {
+            String userId = userIds[i];
+            String department = departments[i];
+            String firstName = firstNames[i];
+            String lastName = lastNames[i];
+            
+            addEmployee(userId, department, firstName, lastName);
         }
 
     }
 
-    public void addEmployee(String userId) {
+    public void addEmployee(String userId, String department, String firstName, String lastName) {
         logger.info("Adding user: " + userId);
-        Employee Employee = new Employee();
-        Employee.setUserId(userId);
-        accounts.add(Employee);
+        logger.info("with department: " + department);
+        logger.info("with first name: " + firstName);
+        Employee employee = new Employee();
+        employee.setUserId(userId);
+        employee.setDepartment(department);
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setPassword(userId); // Set password to be the same as the userId
+        
+        accounts.add(employee);
     }
 
     public void addEmployee(Employee Employee) {

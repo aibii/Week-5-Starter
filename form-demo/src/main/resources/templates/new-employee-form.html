@@ -10,20 +10,24 @@
 
 <body>
     <h2>Login</h2>
-    <form action="/login" method="post" th:object="${employee}">
+    <form action="/add-employee" method="post" th:object="${newEmployee}">
         <label>User Id</label>
         <input type="text" name="userId" th:field="*{userId}">
         <br>
         <label>Password</label>
-        <input type="password" name="password">
+        <input type="password" name="password" th:field="*{password}">
+        <br>
+        <label>First Name</label>
+        <input type="text" name="firstName" th:field="*{firstName}">
+        <br>
+        <label>Last Name</label>
+        <input type="text" name="lastName" th:field="*{lastName}">
         <br>
         <br>
-        <button>Login</button>
+        <button>Submit</button>
     </form>
 
-    <p>No account? Register here <a href="/register">Register</a>
-        <<-- This link will Whitelabel </p>
-
+    
 
 
 

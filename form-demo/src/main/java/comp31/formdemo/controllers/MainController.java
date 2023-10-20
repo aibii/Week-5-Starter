@@ -30,19 +30,49 @@ public class MainController {
     }
 
     @PostMapping("/login")
-    public String getForm(Employee Employee, Model model) {
+    public String getForm(Employee employee, Model model) {
         logger.info("---- At /login.");
-        logger.info("---- " + Employee.toString());
-        Employee currentUser = loginService.findByUserId(Employee.getUserId());
+        logger.info("---- " + employee.toString());
+        Employee currentUser = loginService.findByUserId(employee.getUserId());
         String returnPage;
-        if (currentUser == null) {
-            model.addAttribute("Employee", Employee);
+
+        if(employee.getUserId() == null || employee.getUserId().isEmpty() || employee.getPassword() == null || employee.getPassword().isEmpty()){
+            model.addAttribute("employee", employee);
             returnPage = "login-form";
-        } else {
-            model.addAttribute("Employee", currentUser);
+        }
+        else if(employee.getUserId().equals("admin")){
+            //model.addAttribute("newEmployee", new Employee());
+            returnPage = "departments/admin";
+        }
+        //else if (currentUser.getUserId().equals(employee.getPassword()) && currentUser.getPassword().equals(employee.getPassword())) {
+        else if (currentUser.getUserId().equals("ollie")) {
+            model.addAttribute("employee", currentUser);
+            returnPage = "departments/" + currentUser.getDepartment();
+        }
+        else if (currentUser == null) {
+            model.addAttribute("employee", employee);
+            returnPage = "login-form";
+        } 
+        else {
+            model.addAttribute("employee", currentUser);
             returnPage = "welcome";
         }
         return returnPage;
+    }
+
+    @GetMapping("/add-employee")
+    public String getAddEmployee(Model model) {
+        logger.info("---- At /add-employee.");
+        model.addAttribute("newEmployee", new Employee());
+        return "new-employee-form";
+    }
+
+    @PostMapping("/add-employee")
+    public String postAddEmployee(Model model, Employee employee) {
+        
+        loginService.addEmployee(employee);
+        model.addAttribute("employee", new Employee());
+        return "login-form";
     }
 
 }

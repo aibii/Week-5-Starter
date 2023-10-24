@@ -14,8 +14,7 @@
         <div th:object="${employee}">
             <h2 th:field="*{userId}"></h2>
             <h2 th:field="*{firstName}"></h2>
-            <!-- <h2 th:text="$Employee.lastName"></h2> This line was missing { }   -->
-            <h2 th:text="*{lastName}"></h2> <!-- Corrected -->
+            <h2 th:text="*{lastName}"></h2>
         </div>
     </form>
 </body>

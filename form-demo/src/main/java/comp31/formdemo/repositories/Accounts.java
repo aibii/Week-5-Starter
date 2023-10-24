@@ -18,6 +18,23 @@ public class Accounts extends ArrayList<Employee> {
     }
 
     // TODO add findByDepartment
-    // TODO add findAllEmployees
+
+    public ArrayList<Employee> findAllEmployees() {
+        ArrayList<Employee> employees = new ArrayList<Employee>(); //creating a new arrayList object
+        for (Employee employee : this) { //adding all Employees to the new arrayList
+            employees.add(employee);
+        }
+        return employees;
+    }
+
+    public ArrayList<Employee> findByDepartment(String department) {
+        ArrayList<Employee> employees = new ArrayList<Employee>(); //creating a new arrayList object
+        for (Employee employee : this) { //adding all Employees to the new arrayList
+            if (employee.getDepartment().equals(department)) {
+                employees.add(employee);
+            }
+        }
+        return employees;
+    }
 
 }
